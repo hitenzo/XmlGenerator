@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="XmlGenerator-branch:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/XmlGenerator_branch_jar</output-path>
+    <root id="archive" name="XmlGenerator-branch.jar">
+      <element id="module-output" name="XmlGenerator-branch" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/py4j-0.8.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
