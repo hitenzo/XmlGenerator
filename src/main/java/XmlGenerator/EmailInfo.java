@@ -1,8 +1,6 @@
 package XmlGenerator;
 
-/**
- * Created by hitenz on 07.03.2017.
- */
+
 public class EmailInfo implements java.io.Serializable {
 
     private int id;

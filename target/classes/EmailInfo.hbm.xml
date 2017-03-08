@@ -4,20 +4,20 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="XmlGenerator.EmailInfo" table="EMAILINFO">
+    <class name="XmlGenerator.EmailInfo" table="emailinfo">
         <id name="id" type="int" column="id">
             <generator class="native"/>
         </id>
-        <property name="login" column="LOGIN" type="string"/>
-        <property name="password" column="PASSWORD" type="string"/>
-        <property name="repeat_password" column="REAPEAT_PASS" type="string"/>
-        <property name="name" column="NAME" type="string"/>
-        <property name="surname" column="SURNAME" type="string"/>
-        <property name="fullname" column="FULLNAME" type="string"/>
-        <property name="city_postalcode" column="CITY_CODE" type="string"/>
-        <property name="alternative_contact" column="ALTERNAT_CONTACT" type="string"/>
-        <property name="birthDate_day" column="BIRTHDAY" type="string"/>
-        <property name="birthDate_month" column="BIRTHMONTH" type="string"/>
-        <property name="birthDate_year" column="BIRTHYEAR" type="string"/>
+        <property name="login" column="Login" type="string"/>
+        <property name="password" column="Password" type="string"/>
+        <property name="repeat_password" column="Repeat_pass" type="string"/>
+        <property name="name" column="Name" type="string"/>
+        <property name="surname" column="Surname" type="string"/>
+        <property name="fullname" column="Fullname" type="string"/>
+        <property name="city_postalcode" column="City_code" type="string"/>
+        <property name="alternative_contact" column="Alternative_Contact" type="string"/>
+        <property name="birthDate_day" column="Birth_Day" type="string"/>
+        <property name="birthDate_month" column="Birth_Month" type="string"/>
+        <property name="birthDate_year" column="Birth_Year" type="string"/>
     </class>
 </hibernate-mapping>

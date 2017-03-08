@@ -5,13 +5,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by hitenz on 07.03.2017.
- */
 public class EmailsManager {
 
     private ArrayList<EmailInfo> emailsList = new ArrayList<EmailInfo>();
@@ -19,7 +15,7 @@ public class EmailsManager {
     private Session session;
 
     public EmailsManager(){
-        Configuration conf = new Configuration(); //"hibernate.cfg.xml"
+        Configuration conf = new Configuration();
         conf.addResource("EmailInfo.hbm.xml");
         conf.configure();
         ServiceRegistry sessionRegistry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
@@ -49,11 +45,9 @@ public class EmailsManager {
     public void saveEmailsToDB(){
 
         session.beginTransaction();
-
         for(EmailInfo email : emailsList){
             session.save(email);
         }
-
         session.getTransaction().commit();
     }
 
@@ -77,7 +71,6 @@ public class EmailsManager {
             char randomCharacter = (char)(rand.nextInt(26) + 'a');
             login = login.concat(Character.toString(randomCharacter));
         }
-
         for(int j=0; j<5; j++){
             int randomNumber = rand.nextInt(10);
             login = login.concat(Integer.toString(randomNumber));
