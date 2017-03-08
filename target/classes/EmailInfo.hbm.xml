@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="XmlGenerator.EmailInfo" table="EMAILINFO">
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="login" column="LOGIN" type="string"/>
+        <property name="password" column="PASSWORD" type="string"/>
+        <property name="repeat_password" column="REAPEAT_PASS" type="string"/>
+        <property name="name" column="NAME" type="string"/>
+        <property name="surname" column="SURNAME" type="string"/>
+        <property name="fullname" column="FULLNAME" type="string"/>
+        <property name="city_postalcode" column="CITY_CODE" type="string"/>
+        <property name="alternative_contact" column="ALTERNAT_CONTACT" type="string"/>
+        <property name="birthDate_day" column="BIRTHDAY" type="string"/>
+        <property name="birthDate_month" column="BIRTHMONTH" type="string"/>
+        <property name="birthDate_year" column="BIRTHYEAR" type="string"/>
+    </class>
+</hibernate-mapping>
