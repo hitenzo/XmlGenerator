@@ -30,7 +30,6 @@ public class ConfigFile {
 
     public ConfigFile(String filePath){
         filePath = filePath;
-        loadFileConfig();
     }
 
     public Configuration getConfiguration(){

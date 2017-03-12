@@ -14,10 +14,18 @@ public class EmailsManager {
     private SessionFactory sessionFactory;
     private Session session;
 
-    public EmailsManager(){
-        Configuration conf = new Configuration();
-        conf.addResource("EmailInfo.hbm.xml");
-        conf.configure();
+    public EmailsManager(String configPath){
+        Configuration conf;
+        if(configPath != "0"){
+            ConfigFile configFile = new ConfigFile(configPath);
+            configFile.loadFileConfig();
+            conf = configFile.getConfiguration();
+            conf.configure();
+        }else{
+            conf = new Configuration();
+            conf.addResource("EmailInfo.hbm.xml");
+            conf.configure();
+        }
         ServiceRegistry sessionRegistry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
         sessionFactory = conf.buildSessionFactory(sessionRegistry);
     }
@@ -53,11 +61,15 @@ public class EmailsManager {
 
     }
 
-    public void deleteEmailsFromDB(int id){
+    public void deleteEmailsFromDB(String idsAsString){
         session = sessionFactory.openSession();
         session.beginTransaction();
-        EmailInfo email = (EmailInfo)session.load(EmailInfo.class, id);
-        session.delete(email);
+        String[] numbers = idsAsString.replaceAll("\\s", "").split(",");
+        for(int i=0; i<numbers.length; i++){
+            int id = Integer.parseInt(numbers[i]);
+            EmailInfo email = (EmailInfo)session.load(EmailInfo.class, id);
+            session.delete(email);
+        }
         session.getTransaction().commit();
         session.close();
     }
