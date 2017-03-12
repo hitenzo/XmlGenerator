@@ -20,7 +20,6 @@ public class EmailsManager {
         conf.configure();
         ServiceRegistry sessionRegistry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
         sessionFactory = conf.buildSessionFactory(sessionRegistry);
-        session = sessionFactory.openSession();
     }
 
     public void createEmails(int counter){
@@ -44,22 +43,26 @@ public class EmailsManager {
 
     public void saveEmailsToDB(){
 
+        session = sessionFactory.openSession();
         session.beginTransaction();
         for(EmailInfo email : emailsList){
             session.save(email);
         }
         session.getTransaction().commit();
+        session.close();
+
     }
 
     public void deleteEmailsFromDB(int id){
+        session = sessionFactory.openSession();
         session.beginTransaction();
         EmailInfo email = (EmailInfo)session.load(EmailInfo.class, id);
         session.delete(email);
         session.getTransaction().commit();
+        session.close();
     }
 
     public void closeDBConnection(){
-        session.close();
         sessionFactory.close();
     }
 
