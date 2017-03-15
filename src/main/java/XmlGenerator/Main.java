@@ -1,19 +1,27 @@
 package XmlGenerator;
 
 
+import java.io.FileNotFoundException;
+
 public class Main {
 
-    public static void main(String[] args){
-        int emailsCount = Integer.parseInt(args[0]);
-        String filePath = args[1];
-        String emailsToDelete = args[2];
+    public static void main(String[] args) {
+        String filePath;
 
-        EmailsManager emailManager = new EmailsManager(filePath);
-        emailManager.createEmails(emailsCount);
-        emailManager.saveEmailsToDB();
-        if(emailsToDelete != "0"){
-            emailManager.deleteEmailsFromDB(emailsToDelete);
+        if(args.length != 0){
+            filePath = args[0];
+        }else{
+            filePath = "0";
         }
+
+
+        EmailsManager emailManager = null;
+        try {
+            emailManager = new EmailsManager(filePath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        emailManager.saveEmailsToDB();
         emailManager.closeDBConnection();
     }
 }

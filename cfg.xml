@@ -1,0 +1,14 @@
+<seed_data>
+	<db_path>jdbc:sqlite:D:\sqliteDB\emails.db</db_path>
+	<mail_count>2</mail_count>
+	<show_sql>true</show_sql>
+	<format_sql>true</format_sql>
+	<dialect>com.enigmabridge.hibernate.dialect.SQLiteDialect</dialect>
+	<connection.driver_class>org.sqlite.JDBC</connection.driver_class>
+	<current_session_context_class>thread</current_session_context_class>
+	<connection.username></connection.username>
+	<connection.password></connection.password>
+
+	<!--  create / update  -->
+	<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+</seed_data>

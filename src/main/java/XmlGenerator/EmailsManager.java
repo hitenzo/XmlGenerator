@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -14,20 +16,24 @@ public class EmailsManager {
     private SessionFactory sessionFactory;
     private Session session;
 
-    public EmailsManager(String configPath){
+    public EmailsManager(String configPath) throws FileNotFoundException {
         Configuration conf;
+        int emailsCount;
         if(configPath != "0"){
             ConfigFile configFile = new ConfigFile(configPath);
             configFile.loadFileConfig();
             conf = configFile.getConfiguration();
             conf.configure();
+            emailsCount = configFile.getEmailsCount();
         }else{
             conf = new Configuration();
             conf.addResource("EmailInfo.hbm.xml");
             conf.configure();
+            emailsCount = 1;
         }
         ServiceRegistry sessionRegistry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
         sessionFactory = conf.buildSessionFactory(sessionRegistry);
+        createEmails(emailsCount);
     }
 
     public void createEmails(int counter){
@@ -59,19 +65,6 @@ public class EmailsManager {
         session.getTransaction().commit();
         session.close();
 
-    }
-
-    public void deleteEmailsFromDB(String idsAsString){
-        session = sessionFactory.openSession();
-        session.beginTransaction();
-        String[] numbers = idsAsString.replaceAll("\\s", "").split(",");
-        for(int i=0; i<numbers.length; i++){
-            int id = Integer.parseInt(numbers[i]);
-            EmailInfo email = (EmailInfo)session.load(EmailInfo.class, id);
-            session.delete(email);
-        }
-        session.getTransaction().commit();
-        session.close();
     }
 
     public void closeDBConnection(){
